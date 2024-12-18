@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.hr {
+    width: 500px;
+}
+
+#title {
+    font-size: 36px;
+    font-weight: hold;
+    letter-spacing: 2px;
+}
+
+/* table stylinmg */
+
+table {
+    width:350px;
+    height:420px;
+    margin:0 auto;
+    margin-top: 3px;
+}
+
+th, td {
+    border: 2px solid rgb(182, 232, 232);
+    color: black;
+    font-size: 36px;
+    font-weight:bold;
+    align-items: center;
+
+    /* padding and space */
+    border-spacing: 80px;
+}
+
+
+/* stuff to do with the board - could not figure board out; converted to table, tried to mimic styling */
+#board {
+    width: 350px;
+    height: 420px;
+    margin:0 auto;
+    margin-top: 3px;
+    display: flex;  /*it's going to keep our tile element within the board*/
+    flex-wrap: wrap;
+}
+
+.tile {
+    /*box*/
+    border: 2px solid rgb(182, 232, 232);
+    width: 60px;
+    height: 60px;
+    margin: 2.5px;
+
+    /*text*/
+    color: black;
+    font-size: 36px;
+    font-weight:bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.correct {
+    background-color: greenyellow;
+    color: white;
+    border-color: white; /* so the border can blend into the background */
+}
+
+.present {
+     background-color: yellow;
+     color:white;
+     border-color: white;
+}
+
+.absent {
+    background-color:gray ;
+    color: white;
+    border-color: white;
+}
+
+.keyboard-button {
+    background-color: #e3e5e4;
+    border: none;
+    color: rgb(105, 105, 105);
+    padding: 30px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+li {
+    text-align:left;
+    margin-right: 150px;
+    margin-left: 80px;
+  }
