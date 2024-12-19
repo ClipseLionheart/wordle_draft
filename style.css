@@ -1,98 +1,110 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-}
+/* '^^' means 'note to self' so like, check this later, or I can command F to find these notes for stuff to change 
+to make the game more realistically possible or understandable */
 
-.hr {
-    width: 500px;
-}
+/* Global Styles & Colors */
+:root {
+    --green: #6aaa64;
+    --darkendGreen: #538d4e;
+    --yellow: #c9b458;
+    --darkendYellow: #b59f3b;
+    --lightGray: #d8d8d8;
+    --gray: #86888a;
+    --darkGray: #939598;
+    --white: #fff;
+    --black: #212121;
 
-#title {
-    font-size: 36px;
-    font-weight: hold;
-    letter-spacing: 2px;
-}
-
-/* table stylinmg */
-
-table {
-    width:350px;
-    height:420px;
-    margin:0 auto;
-    margin-top: 3px;
-}
-
-th, td {
-    border: 2px solid rgb(182, 232, 232);
-    color: black;
-    font-size: 36px;
-    font-weight:bold;
-    align-items: center;
-
-    /* padding and space */
-    border-spacing: 80px;
-}
-
-
-/* stuff to do with the board - could not figure board out; converted to table, tried to mimic styling */
-#board {
-    width: 350px;
-    height: 420px;
-    margin:0 auto;
-    margin-top: 3px;
-    display: flex;  /*it's going to keep our tile element within the board*/
-    flex-wrap: wrap;
-}
-
-.tile {
-    /*box*/
-    border: 2px solid rgb(182, 232, 232);
-    width: 60px;
-    height: 60px;
-    margin: 2.5px;
-
-    /*text*/
-    color: black;
-    font-size: 36px;
-    font-weight:bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.correct {
-    background-color: greenyellow;
-    color: white;
-    border-color: white; /* so the border can blend into the background */
-}
-
-.present {
-     background-color: yellow;
-     color:white;
-     border-color: white;
-}
-
-.absent {
-    background-color:gray ;
-    color: white;
-    border-color: white;
-}
-
-.keyboard-button {
-    background-color: #e3e5e4;
-    border: none;
-    color: rgb(105, 105, 105);
-    padding: 30px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+/* Colorblind colors - COULD BE REMOVED? ^^ */ 
+    --orange: #f5793a;
+    --blue: #85c0f9;
+    font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
     font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+    --header-height: 50px;
+    --keyboard-height: 200px;
+    --game-max-width: 500px;
 }
 
-li {
-    text-align:left;
-    margin-right: 150px;
-    margin-left: 80px;
-  }
+
+/* Light theme colors */
+:root {
+    --color-tone-1: #1a1a1b;
+    --color-tone-2: #787c7e;
+    --color-tone-3: #878a8c;
+    --color-tone-4: #d3d6da;
+    --color-tone-5: #edeff1;
+    --color-tone-6: #f6f7f8;
+    --color-tone-7: #ffffff;
+    --opacity-50: rgba(255, 255, 255, 0.5);
+}
+
+/* Dark Theme Colors ^^ MAKE THIS AGAIN MYSELF? LIKE IN A NORMAL / BELIEVABLE WAY? */
+.nightmode {
+    --color-tone-1: #d7dadc;
+    --color-tone-2: #818384;
+    --color-tone-3: #565758;
+    --color-tone-4: #3a3a3c;
+    --color-tone-5: #272729;
+    --color-tone-6: #1a1a1b;
+    --color-tone-7: #121213;
+    --opacity-50: rgba(0, 0, 0, 0.5);
+}
+         
+/* Constant colors and colors derived from theme */
+:root, .nightmode {
+    --color-background: var(--color-tone-7);
+}
+
+:root {
+         --color-present: var(--yellow);
+         --color-correct: var(--green);
+         --color-absent: var(--color-tone-2);
+         --tile-text-color: var(--color-tone-7);
+         --key-text-color: var(--color-tone-1);
+         --key-evaluated-text-color: var(--color-tone-7);
+         --key-bg: var(--color-tone-4);
+         --key-bg-present: var(--color-present);
+         --key-bg-correct: var(--color-correct);
+         --key-bg-absent: var(--color-absent);
+         --modal-content-bg: var(--color-tone-7);
+}
+         
+.nightmode /* ^^ WHAT EVEN IS THIS? SHOULD I REMOVE IT BC IDK WHAT IT IS? */ { 
+         --color-present: var(--darkendYellow);
+         --color-correct: var(--darkendGreen);
+         --color-absent: var(--color-tone-4);
+         --tile-text-color: var(--color-tone-1);
+         --key-text-color: var(--color-tone-1);
+         --key-evaluated-text-color: var(--color-tone-1);
+         --key-bg: var(--color-tone-2);
+         --key-bg-present: var(--color-present);
+         --key-bg-correct: var(--color-correct);
+         --key-bg-absent: var(--color-absent);
+         --modal-content-bg: var(--color-tone-7);
+}
+
+.colorblind {
+         --color-correct: var(--orange);
+         --color-present: var(--blue);
+         --tile-text-color: var(--white);
+         --key-bg-present: var(--color-present);
+         --key-bg-correct: var(--color-correct);
+         --key-bg-absent: var(--color-absent);
+}
+
+html /* ^^ I WOULD PROBABLY NEVER DO THIS, SO SHOULD I REMOVE IT? */{
+    height: 100%;
+    }
+
+
+body {
+    height: 100%;
+    background-color: var(--color-background);
+    margin: 0;
+    padding: 0;
+
+         /* Prevent scrollbar appearing on page transition 
+         overflow-y: hidden;
+         */
+
+         /*^^IDK WHAT THIS EVEN MEANS... SO MAYBE I DELETE IT? 
+         BUT I DON'T WANT IT TO LIKE ALL FALL APART. CHANGE 'VAR' TO 'LET'?*/
+}
